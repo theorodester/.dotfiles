@@ -167,6 +167,7 @@
       "z" = "zeditor";
       "cuda-shell" = "nix-shell ~/shells/cuda-shell.nix";
       "gc" = "git commit -S -a -m";
+      "gp" = "git push";
     };
 
     initContent = ''
