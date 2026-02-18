@@ -85,6 +85,7 @@
     pinentry
     gemini-cli
     codex
+    worktrunk
     zed-editor-fhs
     zathura
     blender

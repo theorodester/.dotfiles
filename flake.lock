@@ -69,7 +69,21 @@
         "codex-bin": "codex-bin",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-zed": "nixpkgs-zed"
+        "nixpkgs-zed": "nixpkgs-zed",
+        "worktrunk-bin": "worktrunk-bin"
+      }
+    },
+    "worktrunk-bin": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1771354478,
+        "narHash": "sha256-ZvNMR1i/HlM6eafODauDgUaVh4jz4mCYi+mTn7gPVqo=",
+        "type": "tarball",
+        "url": "https://github.com/max-sixty/worktrunk/releases/latest/download/worktrunk-x86_64-unknown-linux-musl.tar.xz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://github.com/max-sixty/worktrunk/releases/latest/download/worktrunk-x86_64-unknown-linux-musl.tar.xz"
       }
     }
   },

@@ -23,6 +23,11 @@
       url = "https://github.com/openai/codex/releases/latest/download/codex-x86_64-unknown-linux-musl.tar.gz";
       flake = false;
     };
+    worktrunk-bin = {
+      # GitHub redirects this URL to the latest tagged release asset.
+      url = "https://github.com/max-sixty/worktrunk/releases/latest/download/worktrunk-x86_64-unknown-linux-musl.tar.xz";
+      flake = false;
+    };
 
     # git version of hyprland
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
@@ -70,6 +75,31 @@
               homepage = "https://github.com/openai/codex";
               license = final.lib.licenses.asl20;
               mainProgram = "codex";
+              platforms = [ "x86_64-linux" ];
+            };
+          };
+          worktrunk = final.stdenvNoCC.mkDerivation {
+            pname = "worktrunk";
+            version = "latest";
+            src = inputs.worktrunk-bin;
+
+            installPhase = ''
+              runHook preInstall
+              if [ -d "$src/worktrunk-x86_64-unknown-linux-musl" ]; then
+                bin_root="$src/worktrunk-x86_64-unknown-linux-musl"
+              else
+                bin_root="$src"
+              fi
+              install -Dm755 "$bin_root/wt" "$out/bin/wt"
+              install -Dm755 "$bin_root/git-wt" "$out/bin/git-wt"
+              runHook postInstall
+            '';
+
+            meta = {
+              description = "CLI for Git worktree management";
+              homepage = "https://worktrunk.dev";
+              license = with final.lib.licenses; [ mit asl20 ];
+              mainProgram = "wt";
               platforms = [ "x86_64-linux" ];
             };
           };
