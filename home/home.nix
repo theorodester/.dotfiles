@@ -184,6 +184,7 @@
     '';
 
     envExtra = ''
+      eval "$(wt config shell init zsh)"
       eval "$(zoxide init --cmd cd zsh)"
     '';
   };
