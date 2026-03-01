@@ -3,14 +3,26 @@
     "codex-bin": {
       "flake": false,
       "locked": {
-        "lastModified": 1771398015,
-        "narHash": "sha256-m2CEtzaymkoFIAS3fhabe+FcFqGn75UtY/IhdUwFE9U=",
+        "lastModified": 1772146375,
+        "narHash": "sha256-4zRqp45fyht9L3M4arTlMB7Hc5jXZY/3yFaBeIm+lG8=",
         "type": "tarball",
         "url": "https://github.com/openai/codex/releases/latest/download/codex-x86_64-unknown-linux-musl.tar.gz"
       },
       "original": {
         "type": "tarball",
         "url": "https://github.com/openai/codex/releases/latest/download/codex-x86_64-unknown-linux-musl.tar.gz"
+      }
+    },
+    "gemini-cli-bin": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-tUZDmDNHSQfcWn+MdiU+MKIe/z7ecxBoaikrUlDy5LU=",
+        "type": "file",
+        "url": "https://github.com/google-gemini/gemini-cli/releases/latest/download/gemini.js"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/google-gemini/gemini-cli/releases/latest/download/gemini.js"
       }
     },
     "home-manager": {
@@ -67,6 +79,7 @@
     "root": {
       "inputs": {
         "codex-bin": "codex-bin",
+        "gemini-cli-bin": "gemini-cli-bin",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "nixpkgs-zed": "nixpkgs-zed",
