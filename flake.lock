@@ -13,6 +13,18 @@
         "url": "https://github.com/openai/codex/releases/latest/download/codex-x86_64-unknown-linux-musl.tar.gz"
       }
     },
+    "gemini-cli-bin": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-tUZDmDNHSQfcWn+MdiU+MKIe/z7ecxBoaikrUlDy5LU=",
+        "type": "file",
+        "url": "https://github.com/google-gemini/gemini-cli/releases/latest/download/gemini.js"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/google-gemini/gemini-cli/releases/latest/download/gemini.js"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -67,6 +79,7 @@
     "root": {
       "inputs": {
         "codex-bin": "codex-bin",
+        "gemini-cli-bin": "gemini-cli-bin",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "nixpkgs-zed": "nixpkgs-zed",
