@@ -92,6 +92,7 @@
     asciinema
     asciinema-agg
     ripgrep
+    p7zip
   ];
 
   home.sessionPath = [ "$HOME/.local/bin" ];
