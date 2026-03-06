@@ -117,8 +117,6 @@
 
       master = { new_status = "master"; };
 
-      gestures = { workspace_swipe = "off"; };
-
       misc = { force_default_wallpaper = 0; };
 
       # device = [
@@ -133,30 +131,30 @@
       #   }
       # ];
 
-      windowrulev2 = [
-        "suppressevent maximize, class:.*" # apparently this is nice
+      windowrule = [
+        "match:class .*, suppress_event maximize" # apparently this is nice
 
-        "opacity 1.0 0.6,class:^(kitty)$"
-        "opacity 0.8 0.8,class:^(Code)$"
+        "match:class ^(kitty)$, opacity 1.0 0.6"
+        "match:class ^(Code)$, opacity 0.8 0.8"
 
-        "noanim,class:^(wofi)$"
+        "match:class ^(wofi)$, no_anim on"
 
-        "opacity 0.7 0.5,class:^(obsidian)$ "
-        "opacity 0.85 0.65,class:^(dev.zed.Zed)$ "
-        "tile,class:^(obsidian)$ # force obsidian to tile "
+        "match:class ^(obsidian)$, opacity 0.7 0.5"
+        "match:class ^(dev.zed.Zed)$, opacity 0.85 0.65"
+        "match:class ^(obsidian)$, tile on" # force obsidian to tile
 
-        "opacity 0.7 0.7,class:^(discord)$"
-        "opacity 0.5 0.3,class:^(spotify)$"
+        "match:class ^(discord)$, opacity 0.7 0.7"
+        "match:class ^(spotify)$, opacity 0.5 0.3"
 
-        "opacity 0.8 0.8,class:^(firefox)$,title:(Gradescope)(.*)$"
-        "opacity 0.7 0.7,class:^(firefox)$,title:(Google Calendar)(.*)$"
-        "opacity 0.8 0.8,class:^(firefox)$,title:(Wikipedia)(.*)$"
-        "opacity 0.7 0.7,class:^(firefox)$,title:(RapidIdentity)(.*)$"
-        "opacity 0.7 0.7,class:^(firefox)$,title:(.*)(Online LaTeX Editor Overleaf)(.*)$"
-        "opacity 0.7 0.7,class:^(firefox)$,title:(.*)(Harvey Mudd College Mail)(.*)$"
-        "opacity 0.7 0.7,class:^(firefox)$,title:(Inbox )(.*)(theorodester@gmail.com)(.*)$"
+        "match:class ^(firefox)$, match:title (Gradescope)(.*)$, opacity 0.8 0.8"
+        "match:class ^(firefox)$, match:title (Google Calendar)(.*)$, opacity 0.7 0.7"
+        "match:class ^(firefox)$, match:title (Wikipedia)(.*)$, opacity 0.8 0.8"
+        "match:class ^(firefox)$, match:title (RapidIdentity)(.*)$, opacity 0.7 0.7"
+        "match:class ^(firefox)$, match:title (.*)(Online LaTeX Editor Overleaf)(.*)$, opacity 0.7 0.7"
+        "match:class ^(firefox)$, match:title (.*)(Harvey Mudd College Mail)(.*)$, opacity 0.7 0.7"
+        "match:class ^(firefox)$, match:title (Inbox )(.*)(theorodester@gmail.com)(.*)$, opacity 0.7 0.7"
 
-        "opacity 0.7 0.7,class:^(rstudio)$"
+        "match:class ^(rstudio)$, opacity 0.7 0.7"
       ];
 
       "$mod" = "SUPER";
