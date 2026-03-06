@@ -33,7 +33,7 @@
     profile = userSettings.codexAuthProfile;
   };
 
-  nixGL.vulkan.enable = true;
+  targets.genericLinux.nixGL.vulkan.enable = true;
 
   xdg.configFile."electron-flags.conf".source = ./electron-flags.conf;
   xdg.configFile."electron32-flags.conf".source = ./electron-flags.conf;
@@ -82,7 +82,6 @@
     inkscape
     yt-dlp
     gnupg
-    pinentry
     gemini-cli
     codex
     worktrunk
@@ -192,9 +191,9 @@
 
   programs.git = {
     enable = true;
-    userName = "Theo Rode";
-    userEmail = "theorodester@gmail.com";
-    extraConfig = {
+    settings = {
+      user.name = "Theo Rode";
+      user.email = "theorodester@gmail.com";
       init.defaultBranch = "main";
       safe.directory = [
         "/home/theo/Documents/Obsidian_Vault"
