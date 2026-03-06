@@ -113,7 +113,8 @@
   #  /etc/profiles/per-user/theo/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "hx";
+    VISUAL = "hx";
     DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";
     # DEFAULT_BROWSER = "${pkgs.google-chrome}/bin/google-chrome-stable";
   };
