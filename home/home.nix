@@ -114,7 +114,7 @@
   #
   home.sessionVariables = {
     EDITOR = "vim";
-    VISUAL = "zeditor";
+    VISUAL = "vim";
     DEFAULT_BROWSER = "${pkgs.firefox}/bin/firefox";
     # DEFAULT_BROWSER = "${pkgs.google-chrome}/bin/google-chrome-stable";
   };
