@@ -84,6 +84,7 @@
     gnupg
     gemini-cli
     codex
+    t3code
     worktrunk
     zed-editor-fhs
     zathura

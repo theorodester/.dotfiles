@@ -83,7 +83,20 @@
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "nixpkgs-zed": "nixpkgs-zed",
+        "t3code-bin": "t3code-bin",
         "worktrunk-bin": "worktrunk-bin"
+      }
+    },
+    "t3code-bin": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-NxonpA/i3z8XxV1OEgOR9g5W08v2k424uBAhN+m9fwI=",
+        "type": "file",
+        "url": "https://github.com/pingdotgg/t3code/releases/latest/download/latest-linux.yml"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/pingdotgg/t3code/releases/latest/download/latest-linux.yml"
       }
     },
     "worktrunk-bin": {

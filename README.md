@@ -8,6 +8,7 @@ My computer.
 | --- | --- | --- |
 | `codex-bin` | Codex binary release asset from GitHub | `nix flake update codex-bin` |
 | `gemini-cli-bin` | Gemini CLI release asset (`gemini.js`) from GitHub | `nix flake update gemini-cli-bin` |
+| `t3code-bin` | T3 Code Linux updater manifest from GitHub, which resolves the AppImage in Nix | `nix flake update t3code-bin` |
 | `worktrunk-bin` | Worktrunk binary release asset from GitHub | `nix flake update worktrunk-bin` |
 | `nixpkgs` | Main Nix package set | `nix flake update nixpkgs` |
 | `nixpkgs-zed` | Separate nixpkgs pin used for Zed-related packages | `nix flake update nixpkgs-zed` |

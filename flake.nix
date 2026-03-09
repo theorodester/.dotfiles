@@ -28,6 +28,11 @@
       url = "https://github.com/google-gemini/gemini-cli/releases/latest/download/gemini.js";
       flake = false;
     };
+    t3code-bin = {
+      # GitHub redirects this URL to the latest Linux updater manifest.
+      url = "https://github.com/pingdotgg/t3code/releases/latest/download/latest-linux.yml";
+      flake = false;
+    };
     worktrunk-bin = {
       # GitHub redirects this URL to the latest tagged release asset.
       url = "https://github.com/max-sixty/worktrunk/releases/latest/download/worktrunk-x86_64-unknown-linux-musl.tar.xz";
@@ -56,6 +61,16 @@
       # ---------- SYSTEM SETTINGS ---------- #
       system = "x86_64-linux";
       zedPkgs = import inputs.nixpkgs-zed { inherit system; };
+      t3codeManifestLines = lib.splitString "\n" (builtins.readFile inputs.t3code-bin);
+      t3codeManifestField =
+        prefix:
+        let
+          line = lib.findFirst (lib.hasPrefix prefix) (throw "Missing ${prefix} in t3code manifest") t3codeManifestLines;
+        in
+        lib.removePrefix prefix line;
+      t3codeVersion = t3codeManifestField "version: ";
+      t3codePath = t3codeManifestField "path: ";
+      t3codeSha512 = t3codeManifestField "sha512: ";
 
       overlays = [
         (final: _prev: {
@@ -105,6 +120,28 @@
               platforms = [ "x86_64-linux" ];
             };
           };
+          t3code =
+            let
+              src = final.fetchurl {
+                url = "https://github.com/pingdotgg/t3code/releases/download/v${t3codeVersion}/${t3codePath}";
+                hash = "sha512-${t3codeSha512}";
+              };
+            in
+            final.writeShellApplication {
+              name = "t3code";
+              runtimeInputs = [ final.appimage-run ];
+              text = ''
+                exec appimage-run ${src} "$@"
+              '';
+
+              meta = {
+                description = "Desktop AI coding assistant from pingdotgg";
+                homepage = "https://github.com/pingdotgg/t3code";
+                license = final.lib.licenses.mit;
+                mainProgram = "t3code";
+                platforms = [ "x86_64-linux" ];
+              };
+            };
           worktrunk = final.stdenvNoCC.mkDerivation {
             pname = "worktrunk";
             version = "latest";
