@@ -59,6 +59,11 @@
         "ELECTRON_OZONE_PLATFORM_HINT,wayland"
       ];
 
+      ecosystem = {
+        no_update_news = true;
+        no_donation_nag = true;
+      };
+
       "general" = {
         gaps_in = 5;
         gaps_out = "5,10,10,10";
@@ -72,7 +77,13 @@
         allow_tearing = false;
       };
 
-      "misc" = { disable_hyprland_logo = "yes"; };
+      misc = {
+        disable_hyprland_logo = true;
+        force_default_wallpaper = 0;
+
+        # Keep ANR protection, but make it less eager during heavy Blender jobs.
+        anr_missed_pings = 15;
+      };
 
       decoration = {
         rounding = 10;
@@ -116,8 +127,6 @@
       };
 
       master = { new_status = "master"; };
-
-      misc = { force_default_wallpaper = 0; };
 
       # device = [
       #   {
