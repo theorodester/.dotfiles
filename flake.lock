@@ -3,8 +3,8 @@
     "codex-bin": {
       "flake": false,
       "locked": {
-        "lastModified": 1773000627,
-        "narHash": "sha256-Clmt0yF25DFWMEss7RaxtaUlNPuHzM4pf2PGXreMRKE=",
+        "lastModified": 1773187259,
+        "narHash": "sha256-JoOy6qVifT+iuKhB0JHnQPyvd2EaLcR4dsWNs3DmSLA=",
         "type": "tarball",
         "url": "https://github.com/openai/codex/releases/latest/download/codex-x86_64-unknown-linux-musl.tar.gz"
       },
@@ -63,11 +63,11 @@
     },
     "nixpkgs-zed": {
       "locked": {
-        "lastModified": 1772963539,
-        "narHash": "sha256-9jVDGZnvCckTGdYT53d/EfznygLskyLQXYwJLKMPsZs=",
+        "lastModified": 1773122722,
+        "narHash": "sha256-FIqHByVqxCprNjor1NqF80F2QQoiiyqanNNefdlvOg4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "9dcb002ca1690658be4a04645215baea8b95f31d",
+        "rev": "62dc67aa6a52b4364dd75994ec00b51fbf474e50",
         "type": "github"
       },
       "original": {
@@ -90,7 +90,7 @@
     "t3code-bin": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-HMy//J4TeBHCIHX9rpHaycvKpn40B9k51Wk7jhV2kvs=",
+        "narHash": "sha256-RLFDG662DTfVLHE1LbtEFcT99Zgq+xSUpubloY6tk70=",
         "type": "file",
         "url": "https://github.com/pingdotgg/t3code/releases/latest/download/latest-linux.yml"
       },
