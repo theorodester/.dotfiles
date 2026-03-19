@@ -94,6 +94,7 @@
     ripgrep
     p7zip
     gh
+    davinci-resolve
   ];
 
   home.sessionPath = [ "$HOME/.local/bin" ];
