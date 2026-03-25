@@ -26,7 +26,7 @@
             "disable"
         }") (nixosSystemMonitors));
 
-      "exec-once" = [ "bash ~/.dotfiles/home/hyprland/scripts/start.sh" ];
+      "exec-once" = [ "bash ~/.dotfiles/home/wayland/scripts/start-session.sh" ];
 
       "$terminal" = "kitty";
       "$menu" = "wofi";

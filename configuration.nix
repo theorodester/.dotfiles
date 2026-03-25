@@ -93,14 +93,12 @@
     enable = true;
     xwayland.enable = true;
   };
+  programs.niri.enable = true;
 
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
     NIXOS_OZONE_WL =
       "1"; # THIS WAS CAUSING PROBLEMS WITH (electron) APPS TAKING MINUTES TO LAUNCH
-
-    XDG_CURRENT_DESKTOP = "Hyprland";
-    XDG_SESSION_DESKTOP = "Hyprland";
 
     POLKIT_AUTH_AGENT =
       "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
@@ -213,6 +211,7 @@
     wl-clipboard
     swayidle
     swaylock
+    xwayland-satellite
     xdg-desktop-portal-hyprland
     xdg-utils
     xdg-desktop-portal
