@@ -83,10 +83,6 @@ in
             }
         }
 
-        touchpad {
-            natural-scroll false
-        }
-
         mouse {
             accel-speed -0.5
         }
@@ -141,7 +137,7 @@ in
 
     binds {
         Mod+Space repeat=false { spawn "wofi"; }
-        Mod+S repeat=false { screenshot write-to-disk=false show-pointer=false; }
+        Mod+S repeat=false { screenshot show-pointer=false; }
         Mod+W repeat=false { close-window; }
         Mod+M repeat=false { quit skip-confirmation=true; }
         Mod+V repeat=false { toggle-window-floating; }
