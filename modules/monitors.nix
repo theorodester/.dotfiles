@@ -22,7 +22,7 @@ in {
           example = 1080;
         };
         refreshRate = mkOption {
-          type = types.int;
+          type = types.number;
           default = 60;
         };
         position = mkOption {

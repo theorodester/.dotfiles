@@ -18,7 +18,7 @@ let
           "    position x=${builtins.elemAt coords 0} y=${builtins.elemAt coords 1}\n";
       modeLine =
         if monitor.enabled then
-          "    mode \"${toString monitor.width}x${toString monitor.height}\"\n"
+          "    mode \"${toString monitor.width}x${toString monitor.height}@${toString monitor.refreshRate}\"\n"
         else
           "";
       scaleLine =
