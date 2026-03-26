@@ -1,12 +1,36 @@
 # initial configuration from: https://github.com/justinlime/dotfiles
-{ pkgs, theme, ... }: {
-  home.packages = with pkgs; [ playerctl pavucontrol ];
-  programs.waybar = {
-    enable = true;
-    package = pkgs.waybar.overrideAttrs (oldAttrs: {
-      mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-    });
-    settings.mainBar = {
+{ pkgs, theme, lib, ... }:
+let
+  waybarPackage = pkgs.waybar.overrideAttrs (oldAttrs: {
+    mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+  });
+
+  mkWorkspaceModule =
+    compositor:
+    if compositor == "niri" then
+      {
+        "niri/workspaces" = {
+          all-outputs = false;
+          disable-scroll = false;
+          format = "{value}";
+          on-scroll-up = "niri msg action focus-workspace-up";
+          on-scroll-down = "niri msg action focus-workspace-down";
+        };
+      }
+    else
+      {
+        "hyprland/workspaces" = {
+          all-outputs = false;
+          disable-scroll = false;
+          format = "{name}";
+          on-scroll-up = "hyprctl dispatch workspace e-1";
+          on-scroll-down = "hyprctl dispatch workspace e+1";
+        };
+      };
+
+  mkBarSettings =
+    compositor:
+    {
       position = "top";
       layer = "top";
       height = 25;
@@ -24,13 +48,20 @@
         "custom/playerctl#forward"
         "custom/playerlabel"
       ];
-      modules-center = [ "hyprland/workspaces" ];
+      modules-center = [
+        (
+          if compositor == "niri" then
+            "niri/workspaces"
+          else
+            "hyprland/workspaces"
+        )
+      ];
       modules-right = [
         "tray"
         "battery"
         "backlight"
         "pulseaudio"
-        # "network" 
+        # "network"
         "clock"
       ];
       clock = {
@@ -40,21 +71,6 @@
           <big>{:%Y %B}</big>
           <tt><small>{calendar}</small></tt>'';
         format-alt = " {:%d/%m}";
-      };
-      "wlr/workspaces" = {
-        active-only = false;
-        all-outputs = false;
-        disable-scroll = false;
-        on-scroll-up = "hyprctl dispatch workspace e-1";
-        on-scroll-down = "hyprctl dispatch workspace e+1";
-        format = "{name}";
-        on-click = "activate";
-        format-icons = {
-          urgent = "";
-          active = "";
-          default = "";
-          sort-by-number = true;
-        };
       };
       "custom/playerctl#backward" = {
         format = "󰙣 ";
@@ -142,21 +158,27 @@
         format = "{icon} {volume}%";
         format-muted = "󰝟 ";
         format-icons = { default = [ "󰕿" "󰖀" "󰕾 " ]; };
-        # on-scroll-up= "bash ~/.scripts/volume up";
-        # on-scroll-down= "bash ~/.scripts/volume down";
         scroll-step = 5;
         on-click = "pavucontrol";
       };
       "custom/randwall" = {
         format = "󰏘";
-        # on-click= "bash $HOME/.config/hypr/randwall.sh";
-        # on-click-right= "bash $HOME/.config/hypr/wall.sh";
       };
       "custom/launcher" = {
         format = " ";
         on-click = "pkill wofi || wofi";
         tooltip = "false";
       };
+    }
+    // (mkWorkspaceModule compositor);
+in
+{
+  home.packages = with pkgs; [ playerctl pavucontrol ];
+  programs.waybar = {
+    enable = true;
+    package = waybarPackage;
+    settings = {
+      mainBar = mkBarSettings "hyprland";
     };
     style = ''
       * {
@@ -323,6 +345,14 @@
       }
     '';
   };
+
+  xdg.configFile."waybar/hyprland.json".text = builtins.toJSON [
+    (mkBarSettings "hyprland")
+  ];
+
+  xdg.configFile."waybar/niri.json".text = builtins.toJSON [
+    (mkBarSettings "niri")
+  ];
 }
 # border-radius: 24px 24px 24px 24px;
 # padding: 0 20px;

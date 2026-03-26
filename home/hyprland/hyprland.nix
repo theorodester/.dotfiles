@@ -1,4 +1,12 @@
-{ inputs, config, pkgs, theme, nixosSystemMonitors, ... }: {
+{
+  inputs,
+  config,
+  pkgs,
+  theme,
+  nixosSystemMonitors,
+  ...
+}:
+{
   # imports = [ ./hyprlock.nix ./hypridle.nix ];
 
   wayland.windowManager.hyprland = {
@@ -16,17 +24,20 @@
     '';
 
     settings = {
-      monitor = [ ",preferred,auto,auto" ] ++ (map (m:
+      monitor = [
+        ",preferred,auto,auto"
+      ]
+      ++ (map (
+        m:
         "${m.name},${
           if m.enabled then
-            "${toString m.width}x${toString m.height}@${
-              toString m.refreshRate
-            },${m.position},${m.scale}"
+            "${toString m.width}x${toString m.height}@${toString m.refreshRate},${m.position},${m.scale}"
           else
             "disable"
-        }") (nixosSystemMonitors));
+        }"
+      ) (nixosSystemMonitors));
 
-      "exec-once" = [ "bash ~/.dotfiles/home/hyprland/scripts/start.sh" ];
+      "exec-once" = [ "bash ~/.dotfiles/home/wayland/scripts/start-session.sh" ];
 
       "$terminal" = "kitty";
       "$menu" = "wofi";
@@ -40,17 +51,21 @@
 
         follow_mouse = 1;
 
-        touchpad = { natural_scroll = "no"; };
+        touchpad = {
+          natural_scroll = "no";
+        };
 
         sensitivity = 0.0;
         # force_no_accel = 1;
         # accel_profile = "flat";
       };
 
-      xwayland = { force_zero_scaling = true; };
+      xwayland = {
+        force_zero_scaling = true;
+      };
 
       env = [
-        # force reasonable cursor sizes 
+        # force reasonable cursor sizes
         "GDK_SCALE, 2"
         "XCURSOR_SIZE,12"
         "XCURSOR_THEME,GoogleDot-Black"
@@ -68,8 +83,7 @@
         gaps_in = 5;
         gaps_out = "5,10,10,10";
         border_size = 2;
-        "col.active_border" =
-          "rgba(${theme.base0B}ee) rgba(${theme.base09}ee) 45deg";
+        "col.active_border" = "rgba(${theme.base0B}ee) rgba(${theme.base09}ee) 45deg";
         "col.inactive_border" = "rgba(${theme.dark_background_primary}aa)";
 
         layout = "dwindle";
@@ -126,7 +140,9 @@
         preserve_split = "yes";
       };
 
-      master = { new_status = "master"; };
+      master = {
+        new_status = "master";
+      };
 
       # device = [
       #   {
@@ -170,8 +186,7 @@
 
       # turning off laptop screen on lid close
       bindl = [
-        ''
-          ,switch:off:Lid Switch,exec,hyprctl keyword monitor "eDP-1,preferred,auto,auto"''
+        '',switch:off:Lid Switch,exec,hyprctl keyword monitor "eDP-1,preferred,auto,auto"''
         '',switch:on:Lid Switch,exec,hyprctl keyword monitor "eDP-1,disable"''
       ];
 
@@ -199,7 +214,7 @@
         "$mod, K, movefocus, u"
         "$mod, J, movefocus, d"
 
-        # resizing active window 
+        # resizing active window
         "$mod SHIFT, L, resizeactive, 20 0"
         "$mod SHIFT, H, resizeactive, -20 0"
         "$mod SHIFT, K, resizeactive, 0, -20"
@@ -240,7 +255,7 @@
         ", xf86audiolowervolume, exec, pamixer -d 5"
         ", xf86audioMute, exec, pamixer -t"
 
-        # keyboard brightness control 
+        # keyboard brightness control
         ", xf86KbdBrightnessDown, exec, brightnessctl -d dell::kbd_backlight set 33%-"
         ", xf86KbdBrightnessUp, exec, brightnessctl -d dell::kbd_backlight set 33%+"
 

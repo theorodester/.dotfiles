@@ -16,6 +16,7 @@
     ./waybar/waybar.nix
     ./wofi/wofi.nix
     ./hyprland/hyprland.nix
+    ./niri/niri.nix
     ./mako/mako.nix
     ./swaylock/swaylock.nix
     ./btop/btop.nix
