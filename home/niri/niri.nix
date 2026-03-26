@@ -83,6 +83,12 @@ in
             }
         }
 
+        touchpad {
+            tap
+            tap-button-map "left-right-middle"
+            click-method "clickfinger"
+        }
+
         mouse {
             accel-speed -0.5
         }
