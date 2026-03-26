@@ -153,8 +153,8 @@ in
 
         Mod+H { focus-column-left; }
         Mod+L { focus-column-right; }
-        Mod+K { focus-window-up; }
-        Mod+J { focus-window-down; }
+        Mod+K { focus-workspace-up; }
+        Mod+J { focus-workspace-down; }
 
         Mod+Shift+L { set-column-width "+10%"; }
         Mod+Shift+H { set-column-width "-10%"; }
@@ -165,6 +165,8 @@ in
         Mod+Ctrl+L { move-column-right; }
         Mod+Ctrl+K { move-window-up; }
         Mod+Ctrl+J { move-window-down; }
+        Mod+Alt+K { focus-window-up; }
+        Mod+Alt+J { focus-window-down; }
 
     ${workspaceBindings}
 
@@ -180,6 +182,10 @@ in
     }
 
     window-rule {
+        open-maximized false
+        open-maximized-to-edges false
+        open-fullscreen false
+        draw-border-with-background false
         geometry-corner-radius 10
         clip-to-geometry true
     }
@@ -190,18 +196,33 @@ in
     }
 
     window-rule {
+        match app-id="kitty$" is-focused=true
+        opacity 1.0
+    }
+
+    window-rule {
         match app-id="Code$"
         opacity 0.8
     }
 
     window-rule {
         match app-id="obsidian$"
-        opacity 0.7
+        opacity 0.5
         open-floating false
     }
 
     window-rule {
+        match app-id="obsidian$" is-focused=true
+        opacity 0.7
+    }
+
+    window-rule {
         match app-id="dev\\.zed\\.Zed$"
+        opacity 0.65
+    }
+
+    window-rule {
+        match app-id="dev\\.zed\\.Zed$" is-focused=true
         opacity 0.85
     }
 
@@ -212,6 +233,11 @@ in
 
     window-rule {
         match app-id="spotify$"
+        opacity 0.3
+    }
+
+    window-rule {
+        match app-id="spotify$" is-focused=true
         opacity 0.5
     }
 
