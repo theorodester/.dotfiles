@@ -97,6 +97,7 @@
     p7zip
     gh
     davinci-resolve
+    bubblewrap
   ];
 
   home.sessionPath = [ "$HOME/.local/bin" ];
