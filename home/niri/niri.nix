@@ -169,8 +169,10 @@ in
 
         Mod+Ctrl+H { move-column-left; }
         Mod+Ctrl+L { move-column-right; }
-        Mod+Ctrl+K { move-window-up; }
-        Mod+Ctrl+J { move-window-down; }
+        Mod+Ctrl+K { move-column-to-workspace-up focus=true; }
+        Mod+Ctrl+J { move-column-to-workspace-down focus=true; }
+        Mod+Ctrl+Alt+K { move-window-up; }
+        Mod+Ctrl+Alt+J { move-window-down; }
         Mod+Alt+K { focus-window-up; }
         Mod+Alt+J { focus-window-down; }
 
