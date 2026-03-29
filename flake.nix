@@ -127,11 +127,39 @@
                 hash = "sha512-${t3codeSha512}";
               };
             in
-            final.writeShellApplication {
-              name = "t3code";
-              runtimeInputs = [ final.appimage-run ];
-              text = ''
-                exec appimage-run ${src} "$@"
+            final.stdenvNoCC.mkDerivation {
+              pname = "t3code";
+              version = t3codeVersion;
+              inherit src;
+              dontUnpack = true;
+              nativeBuildInputs = [ final.p7zip ];
+
+              installPhase = ''
+                runHook preInstall
+                install -d "$out/bin" "$out/share/applications" "$out/share/icons/hicolor/1024x1024/apps"
+                cat > "$out/bin/t3code" <<EOF
+                #!${final.runtimeShell}
+                exec ${final.appimage-run}/bin/appimage-run ${src} "\$@"
+                EOF
+                chmod +x "$out/bin/t3code"
+
+                7z x -so "$src" usr/share/icons/hicolor/1024x1024/apps/t3-code-desktop.png \
+                  > "$out/share/icons/hicolor/1024x1024/apps/t3-code-desktop.png"
+
+                cat > "$out/share/applications/t3code.desktop" <<EOF
+                [Desktop Entry]
+                Name=t3code
+                GenericName=AI Coding Assistant
+                Comment=Desktop AI coding assistant from pingdotgg
+                Exec=$out/bin/t3code %U
+                Terminal=false
+                Type=Application
+                Icon=t3-code-desktop
+                StartupWMClass=T3 Code (Alpha)
+                StartupNotify=true
+                Categories=Development;Utility;
+                EOF
+                runHook postInstall
               '';
 
               meta = {
