@@ -6,7 +6,7 @@
     primary = true;
     width = 3440;
     height = 1440;
-    refreshRate = 175;
+    refreshRate = 174.963;
     position = "0x0";
     enabled = true;
     scale = "1";
