@@ -9,6 +9,7 @@
 
 {
   imports = [
+    ./agent-skills.nix
     ./helix/helix.nix
     ./starship/starship.nix
     ./kitty/kitty.nix
@@ -32,6 +33,20 @@
   codexAuth = {
     enable = true;
     profile = userSettings.codexAuthProfile;
+  };
+
+  agentSkills = {
+    enable = true;
+    skills = [
+      {
+        name = "frontend-design";
+        source = inputs.anthropic-skills + "/skills/frontend-design";
+        agents = [
+          "codex"
+          "gemini"
+        ];
+      }
+    ];
   };
 
   targets.genericLinux.nixGL.vulkan.enable = true;

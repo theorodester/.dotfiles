@@ -13,6 +13,10 @@
         nixpkgs.follows = "nixpkgs";
       };
     };
+    anthropic-skills = {
+      url = "github:anthropics/skills";
+      flake = false;
+    };
 
     nixpkgs-zed = {
       url = "nixpkgs/nixos-unstable";
