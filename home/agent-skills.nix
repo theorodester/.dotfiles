@@ -15,9 +15,31 @@ let
       recursive = true;
     };
 
-  skillFiles = lib.listToAttrs (
-    lib.concatMap (skill: map (mkSkillFile skill) (skillAgents skill)) cfg.skills
+  symlinkSkillFiles = lib.listToAttrs (
+    lib.concatMap (
+      skill:
+      map (mkSkillFile skill) (
+        lib.filter (agentName: cfg.agents.${agentName}.installMethod == "symlink") (skillAgents skill)
+      )
+    ) cfg.skills
   );
+
+  copiedSkillInstalls = lib.concatMap (
+    skill:
+    map (
+      agentName:
+      let
+        agentCfg = cfg.agents.${agentName};
+        targetDir = "${config.home.homeDirectory}/${agentCfg.targetDir}/${skill.name}";
+        sourceDir = "${toString skill.source}/.";
+      in
+      ''
+        run rm -rf ${lib.escapeShellArg targetDir}
+        run mkdir -p ${lib.escapeShellArg targetDir}
+        run cp -R --no-preserve=mode,ownership ${lib.escapeShellArg sourceDir} ${lib.escapeShellArg targetDir}
+      ''
+    ) (lib.filter (agentName: cfg.agents.${agentName}.installMethod == "copy") (skillAgents skill))
+  ) cfg.skills;
 
   skillAssertions = lib.concatMap (
     skill:
@@ -38,11 +60,26 @@ in
             type = lib.types.str;
             description = "Home-relative directory where the agent loads installed skills.";
           };
+
+          options.installMethod = lib.mkOption {
+            type = lib.types.enum [
+              "symlink"
+              "copy"
+            ];
+            default = "symlink";
+            description = "How Home Manager should materialize the skill for this agent.";
+          };
         }
       );
       default = {
-        codex.targetDir = ".codex/skills";
-        gemini.targetDir = ".gemini/skills";
+        codex = {
+          targetDir = ".codex/skills";
+          installMethod = "copy";
+        };
+        gemini = {
+          targetDir = ".gemini/skills";
+          installMethod = "symlink";
+        };
       };
       description = "Known agents and the directories they read skills from.";
     };
@@ -76,6 +113,10 @@ in
 
   config = lib.mkIf cfg.enable {
     assertions = skillAssertions;
-    home.file = skillFiles;
+    home.file = symlinkSkillFiles;
+
+    home.activation.agentSkills = lib.hm.dag.entryAfter [ "writeBoundary" ] (
+      lib.concatStringsSep "\n" copiedSkillInstalls
+    );
   };
 }
