@@ -27,11 +27,6 @@
       url = "https://github.com/openai/codex/releases/latest/download/codex-x86_64-unknown-linux-musl.tar.gz";
       flake = false;
     };
-    gemini-cli-bin = {
-      # GitHub redirects this URL to the latest tagged release asset.
-      url = "https://github.com/google-gemini/gemini-cli/releases/latest/download/gemini.js";
-      flake = false;
-    };
     t3code-bin = {
       # GitHub redirects this URL to the latest Linux updater manifest.
       url = "https://github.com/pingdotgg/t3code/releases/latest/download/latest-linux.yml";
@@ -82,29 +77,6 @@
           zed-editor = zedPkgs.zed-editor;
           zed-editor-fhs = zedPkgs.zed-editor.fhs;
           zed-editor-fhs-with-packages = zedPkgs.zed-editor.fhsWithPackages;
-          gemini-cli = final.stdenvNoCC.mkDerivation {
-            pname = "gemini-cli";
-            version = "latest";
-            src = inputs.gemini-cli-bin;
-            dontUnpack = true;
-            nativeBuildInputs = [ final.makeWrapper ];
-
-            installPhase = ''
-              runHook preInstall
-              install -Dm644 "$src" "$out/libexec/gemini.js"
-              makeWrapper ${final.nodejs}/bin/node "$out/bin/gemini" \
-                --add-flags "--no-warnings=DEP0040 $out/libexec/gemini.js"
-              runHook postInstall
-            '';
-
-            meta = {
-              description = "An open-source AI agent that brings the power of Gemini into your terminal";
-              homepage = "https://github.com/google-gemini/gemini-cli";
-              license = final.lib.licenses.asl20;
-              mainProgram = "gemini";
-              platforms = [ "x86_64-linux" ];
-            };
-          };
           codex = final.stdenvNoCC.mkDerivation {
             pname = "codex";
             version = "latest";
