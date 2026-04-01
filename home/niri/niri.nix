@@ -171,6 +171,8 @@ in
         Mod+Ctrl+L { move-column-right; }
         Mod+Ctrl+K { move-column-to-workspace-up focus=true; }
         Mod+Ctrl+J { move-column-to-workspace-down focus=true; }
+        Mod+Ctrl+Shift+H { move-window-to-monitor-left; }
+        Mod+Ctrl+Shift+L { move-window-to-monitor-right; }
         Mod+Ctrl+Alt+K { move-window-up; }
         Mod+Ctrl+Alt+J { move-window-down; }
         Mod+Alt+K { focus-window-up; }

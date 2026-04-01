@@ -19,8 +19,8 @@
     "codex-bin": {
       "flake": false,
       "locked": {
-        "lastModified": 1773940696,
-        "narHash": "sha256-uv9isWIbRQ45eHPQiN/cXz41STueAaFGPH5rk/fqHvQ=",
+        "lastModified": 1774974915,
+        "narHash": "sha256-VWdq00OnV+c1xKjlo7CSufMBg8ZCB2zIo7FElMfjLQ0=",
         "type": "tarball",
         "url": "https://github.com/openai/codex/releases/latest/download/codex-x86_64-unknown-linux-musl.tar.gz"
       },
@@ -32,7 +32,7 @@
     "gemini-cli-bin": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-tUZDmDNHSQfcWn+MdiU+MKIe/z7ecxBoaikrUlDy5LU=",
+        "narHash": "sha256-6IyVQPtARhcm6mBFaYLakulwgj+g7P9vKmCjwcccgXI=",
         "type": "file",
         "url": "https://github.com/google-gemini/gemini-cli/releases/latest/download/gemini.js"
       },
@@ -79,11 +79,11 @@
     },
     "nixpkgs-zed": {
       "locked": {
-        "lastModified": 1773122722,
-        "narHash": "sha256-FIqHByVqxCprNjor1NqF80F2QQoiiyqanNNefdlvOg4=",
+        "lastModified": 1774709303,
+        "narHash": "sha256-D3Q07BbIA2KnTcSXIqqu9P586uWxN74zNoCH3h2ESHg=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "62dc67aa6a52b4364dd75994ec00b51fbf474e50",
+        "rev": "8110df5ad7abf5d4c0f6fb0f8f978390e77f9685",
         "type": "github"
       },
       "original": {
@@ -107,7 +107,7 @@
     "t3code-bin": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-+CcPBKfq9MvieZ1XFMbsyVeJ1Wpx6EKMBjXuV+7Yoz4=",
+        "narHash": "sha256-tXD9UrGVp+ocj3AMjhjJZEAyuBaTjpPVqE5onZ0SvPY=",
         "type": "file",
         "url": "https://github.com/pingdotgg/t3code/releases/latest/download/latest-linux.yml"
       },
@@ -119,8 +119,8 @@
     "worktrunk-bin": {
       "flake": false,
       "locked": {
-        "lastModified": 1774457957,
-        "narHash": "sha256-yJFMINfUml8mFGp/biUGaOAnROWsipaIYyqFOOpLDEw=",
+        "lastModified": 1774554067,
+        "narHash": "sha256-JZ40/pBTIHZMyr2uucHPtT6Yps0IfRQmJRxTCwzD7+Q=",
         "type": "tarball",
         "url": "https://github.com/max-sixty/worktrunk/releases/latest/download/worktrunk-x86_64-unknown-linux-musl.tar.xz"
       },
