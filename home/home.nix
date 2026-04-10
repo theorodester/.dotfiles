@@ -113,6 +113,7 @@
     gh
     davinci-resolve
     bubblewrap
+    libreoffice
   ];
 
   home.sessionPath = [ "$HOME/.local/bin" ];
