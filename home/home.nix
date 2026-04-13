@@ -114,6 +114,7 @@
     davinci-resolve
     bubblewrap
     libreoffice
+    arduino
   ];
 
   home.sessionPath = [ "$HOME/.local/bin" ];
