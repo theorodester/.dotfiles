@@ -19,8 +19,8 @@
     "codex-bin": {
       "flake": false,
       "locked": {
-        "lastModified": 1774974915,
-        "narHash": "sha256-VWdq00OnV+c1xKjlo7CSufMBg8ZCB2zIo7FElMfjLQ0=",
+        "lastModified": 1776966859,
+        "narHash": "sha256-fh5Ul2LD0ERd8BXpsVGnIGX98WGew8KX2uSamuoj9Ao=",
         "type": "tarball",
         "url": "https://github.com/openai/codex/releases/latest/download/codex-x86_64-unknown-linux-musl.tar.gz"
       },
