@@ -94,7 +94,7 @@
     "t3code-bin": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-tXD9UrGVp+ocj3AMjhjJZEAyuBaTjpPVqE5onZ0SvPY=",
+        "narHash": "sha256-q3Yf7cFftyd/BFRkFBPMtKj04L5eSuNppqjTZ9gT3zY=",
         "type": "file",
         "url": "https://github.com/pingdotgg/t3code/releases/latest/download/latest-linux.yml"
       },
