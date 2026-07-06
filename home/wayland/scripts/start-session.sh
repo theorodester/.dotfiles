@@ -13,9 +13,9 @@ start_if_missing() {
   fi
 }
 
-start_if_missing swww-daemon swww-daemon
+start_if_missing awww-daemon awww-daemon
 sleep 0.2
-swww img "$wallpaper" >/dev/null 2>&1 &
+awww img "$wallpaper" >/dev/null 2>&1 &
 
 start_if_missing nm-applet nm-applet --indicator
 start_if_missing blueman-applet blueman-applet

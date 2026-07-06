@@ -160,7 +160,6 @@
     };
     displayManager.gdm = {
       enable = true;
-      wayland = true;
     };
     libinput.enable = true;
     dbus.enable = true;
@@ -214,7 +213,7 @@
     # hyprlock
     # hypridle
 
-    swww
+    awww
     kitty
     wofi
     firefox
