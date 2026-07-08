@@ -19,8 +19,8 @@
     "codex-bin": {
       "flake": false,
       "locked": {
-        "lastModified": 1782866543,
-        "narHash": "sha256-WP1oaCiePM4n2J0F0vkwOKaoZP5iDRfWDXFcNx3pXA0=",
+        "lastModified": 1783472144,
+        "narHash": "sha256-+Aw92RD3oU7EyIk/2RXX2oYRH5BL410nwT3ufhR9hY8=",
         "type": "tarball",
         "url": "https://github.com/openai/codex/releases/latest/download/codex-x86_64-unknown-linux-musl.tar.gz"
       },
@@ -104,8 +104,8 @@
     "worktrunk-bin": {
       "flake": false,
       "locked": {
-        "lastModified": 1782969058,
-        "narHash": "sha256-HJe0y/AvxkP0rQ2g6FdHNmER77LSthePbU0ACzB2xOE=",
+        "lastModified": 1783483615,
+        "narHash": "sha256-Par3xOuYfz1b4h9N3QRh3zmtmixv2rQqxUPYEm9ie6I=",
         "type": "tarball",
         "url": "https://github.com/max-sixty/worktrunk/releases/latest/download/worktrunk-x86_64-unknown-linux-musl.tar.xz"
       },
