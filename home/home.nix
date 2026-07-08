@@ -163,6 +163,8 @@
       name = "Adwaita-dark";
       package = pkgs.gnome-themes-extra;
     };
+
+    gtk4.theme = config.gtk.theme;
   };
 
   # apparently necessary for dark mode:

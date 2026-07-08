@@ -11,6 +11,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
+    configType = "hyprlang";
 
     # package =
     #   inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
@@ -198,7 +199,7 @@
         "$mod, M, exit"
         "$mod, V, togglefloating"
 
-        "$mod CTRL SHIFT, W, exec, swww img ~/.dotfiles/wallpapers/shark_coral_background_1_upscale.jpg &"
+        "$mod CTRL SHIFT, W, exec, awww img ~/.dotfiles/wallpapers/shark_coral_background_1_upscale.jpg &"
 
         "$mod, Q, exec, $terminal"
         "$mod, F, exec, firefox"

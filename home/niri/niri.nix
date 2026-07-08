@@ -148,7 +148,7 @@ in
         Mod+M repeat=false { quit skip-confirmation=true; }
         Mod+V repeat=false { toggle-window-floating; }
 
-        Mod+Ctrl+Shift+W repeat=false { spawn "sh" "-lc" "swww img ${wallpaper}"; }
+        Mod+Ctrl+Shift+W repeat=false { spawn "sh" "-lc" "awww img ${wallpaper}"; }
 
         Mod+Q repeat=false { spawn "kitty"; }
         Mod+F repeat=false { spawn "firefox"; }
