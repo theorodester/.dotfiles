@@ -117,11 +117,16 @@
     # LIBVA_DRIVER_NAME = "nvidia";
     XDG_SESSION_TYPE = "wayland";
 
-    VK_DRIVER_FILES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
+    VK_DRIVER_FILES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.json";
 
   };
 
   hardware = {
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
+
     nvidia = {
       modesetting.enable = true;
       package = config.boot.kernelPackages.nvidiaPackages.stable; # .beta
@@ -235,6 +240,7 @@
     qt6.qmake
     pciutils
     lshw
+    vulkan-tools
 
     pavucontrol # for managing audio
     pamixer # for changing audio volume
