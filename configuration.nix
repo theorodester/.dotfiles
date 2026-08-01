@@ -4,6 +4,7 @@
 
 {
   inputs,
+  lib,
   config,
   pkgs,
   systemSettings,
@@ -108,6 +109,18 @@
     xwayland.enable = true;
   };
   programs.niri.enable = true;
+
+  services.displayManager.sessionPackages = lib.mkForce [
+    (pkgs.symlinkJoin {
+      name = "hyprland-session-no-uwsm-${pkgs.hyprland.version}";
+      paths = [ pkgs.hyprland ];
+      postBuild = ''
+        rm -f $out/share/wayland-sessions/hyprland-uwsm.desktop
+      '';
+      passthru.providedSessions = [ "hyprland" ];
+    })
+    pkgs.niri
+  ];
 
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";

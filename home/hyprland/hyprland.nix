@@ -17,14 +17,14 @@
     #   inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     xwayland.enable = true;
 
-    extraConfig = ''
-      device {
-        name=logitech-g502-x-plus-millennium-falcon
-        sensitivity=-0.5
-      }
-    '';
-
     settings = {
+      device = [
+        {
+          name = "logitech-g502-x-plus-millennium-falcon";
+          sensitivity = -0.5;
+        }
+      ];
+
       monitor = [
         ",preferred,auto,auto"
       ]
@@ -158,29 +158,29 @@
       # ];
 
       windowrule = [
-        "match:class .*, suppress_event maximize" # apparently this is nice
+        "suppressevent maximize, class:.*" # apparently this is nice
 
-        "match:class ^(kitty)$, opacity 1.0 0.6"
-        "match:class ^(Code)$, opacity 0.8 0.8"
+        "opacity 1.0 0.6, class:^(kitty)$"
+        "opacity 0.8 0.8, class:^(Code)$"
 
-        "match:class ^(wofi)$, no_anim on"
+        "noanim, class:^(wofi)$"
 
-        "match:class ^(obsidian)$, opacity 0.7 0.5"
-        "match:class ^(dev.zed.Zed)$, opacity 0.85 0.65"
-        "match:class ^(obsidian)$, tile on" # force obsidian to tile
+        "opacity 0.7 0.5, class:^(obsidian)$"
+        "opacity 0.85 0.65, class:^(dev.zed.Zed)$"
+        "tile, class:^(obsidian)$" # force obsidian to tile
 
-        "match:class ^(discord)$, opacity 0.7 0.7"
-        "match:class ^(spotify)$, opacity 0.5 0.3"
+        "opacity 0.7 0.7, class:^(discord)$"
+        "opacity 0.5 0.3, class:^(spotify)$"
 
-        "match:class ^(firefox)$, match:title (Gradescope)(.*)$, opacity 0.8 0.8"
-        "match:class ^(firefox)$, match:title (Google Calendar)(.*)$, opacity 0.7 0.7"
-        "match:class ^(firefox)$, match:title (Wikipedia)(.*)$, opacity 0.8 0.8"
-        "match:class ^(firefox)$, match:title (RapidIdentity)(.*)$, opacity 0.7 0.7"
-        "match:class ^(firefox)$, match:title (.*)(Online LaTeX Editor Overleaf)(.*)$, opacity 0.7 0.7"
-        "match:class ^(firefox)$, match:title (.*)(Harvey Mudd College Mail)(.*)$, opacity 0.7 0.7"
-        "match:class ^(firefox)$, match:title (Inbox )(.*)(theorodester@gmail.com)(.*)$, opacity 0.7 0.7"
+        "opacity 0.8 0.8, class:^(firefox)$, title:(Gradescope)(.*)$"
+        "opacity 0.7 0.7, class:^(firefox)$, title:(Google Calendar)(.*)$"
+        "opacity 0.8 0.8, class:^(firefox)$, title:(Wikipedia)(.*)$"
+        "opacity 0.7 0.7, class:^(firefox)$, title:(RapidIdentity)(.*)$"
+        "opacity 0.7 0.7, class:^(firefox)$, title:(.*)(Online LaTeX Editor Overleaf)(.*)$"
+        "opacity 0.7 0.7, class:^(firefox)$, title:(.*)(Harvey Mudd College Mail)(.*)$"
+        "opacity 0.7 0.7, class:^(firefox)$, title:(Inbox )(.*)(theorodester@gmail.com)(.*)$"
 
-        "match:class ^(rstudio)$, opacity 0.7 0.7"
+        "opacity 0.7 0.7, class:^(rstudio)$"
       ];
 
       "$mod" = "SUPER";
