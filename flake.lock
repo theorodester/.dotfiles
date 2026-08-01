@@ -19,8 +19,8 @@
     "codex-bin": {
       "flake": false,
       "locked": {
-        "lastModified": 1784380769,
-        "narHash": "sha256-lQUmpwDvgCZR5SXfllVZRpDflJVMtb69blayxFBGfMM=",
+        "lastModified": 1785287336,
+        "narHash": "sha256-Dkw0JuQV49nfonQX44c+9vH8KacyNEapWj9GaVcw/nQ=",
         "type": "tarball",
         "url": "https://github.com/openai/codex/releases/latest/download/codex-x86_64-unknown-linux-musl.tar.gz"
       },
@@ -92,7 +92,7 @@
     "t3code-bin": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-3T9L+0tyMMNi/551EzNUY6F6n8mg8ekMnuXDgb/C+F8=",
+        "narHash": "sha256-3slS4PJKCqRETBN0nmUZ9mCYIIm4eZcdCyoTEUmR+Aw=",
         "type": "file",
         "url": "https://github.com/pingdotgg/t3code/releases/latest/download/latest-linux.yml"
       },
@@ -104,8 +104,8 @@
     "worktrunk-bin": {
       "flake": false,
       "locked": {
-        "lastModified": 1783483615,
-        "narHash": "sha256-Par3xOuYfz1b4h9N3QRh3zmtmixv2rQqxUPYEm9ie6I=",
+        "lastModified": 1785443852,
+        "narHash": "sha256-94kg+F8zoZbJRkzJoLlTNzku1BODpGLrTQxW3Qt1ukc=",
         "type": "tarball",
         "url": "https://github.com/max-sixty/worktrunk/releases/latest/download/worktrunk-x86_64-unknown-linux-musl.tar.xz"
       },
