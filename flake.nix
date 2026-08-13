@@ -110,40 +110,29 @@
                 url = "https://github.com/pingdotgg/t3code/releases/download/v${t3codeVersion}/${t3codePath}";
                 hash = "sha512-${t3codeSha512}";
               };
+              appimageContents = final.appimageTools.extractType2 {
+                pname = "t3code";
+                version = t3codeVersion;
+                inherit src;
+              };
             in
-            final.stdenvNoCC.mkDerivation {
+            final.appimageTools.wrapType2 {
               pname = "t3code";
               version = t3codeVersion;
               inherit src;
-              dontUnpack = true;
-              nativeBuildInputs = [ final.p7zip ];
+              nativeBuildInputs = [ final.makeWrapper ];
 
-              installPhase = ''
-                runHook preInstall
-                install -d "$out/bin" "$out/share/applications" "$out/share/icons/hicolor/1024x1024/apps"
-                cat > "$out/bin/t3code" <<EOF
-                #!${final.runtimeShell}
-                exec ${final.appimage-run}/bin/appimage-run ${src} "\$@"
-                EOF
-                chmod +x "$out/bin/t3code"
+              extraInstallCommands = ''
+                mv $out/bin/t3code $out/bin/.t3code-wrapped
+                makeWrapper $out/bin/.t3code-wrapped $out/bin/t3code \
+                  --set APPIMAGE $out/bin/t3code
 
-                7z x -so "$src" usr/share/icons/hicolor/1024x1024/apps/t3-code-desktop.png \
-                  > "$out/share/icons/hicolor/1024x1024/apps/t3-code-desktop.png"
-
-                cat > "$out/share/applications/t3code.desktop" <<EOF
-                [Desktop Entry]
-                Name=t3code
-                GenericName=AI Coding Assistant
-                Comment=Desktop AI coding assistant from pingdotgg
-                Exec=$out/bin/t3code %U
-                Terminal=false
-                Type=Application
-                Icon=t3-code-desktop
-                StartupWMClass=T3 Code (Alpha)
-                StartupNotify=true
-                Categories=Development;Utility;
-                EOF
-                runHook postInstall
+                install -m 444 -D ${appimageContents}/t3code.desktop \
+                  $out/share/applications/t3code.desktop
+                install -m 444 -D ${appimageContents}/usr/share/icons/hicolor/512x512/apps/t3code.png \
+                  $out/share/icons/hicolor/512x512/apps/t3code.png
+                substituteInPlace $out/share/applications/t3code.desktop \
+                  --replace-fail 'Exec=AppRun --no-sandbox %U' 'Exec=t3code %U'
               '';
 
               meta = {

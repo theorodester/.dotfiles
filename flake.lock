@@ -117,8 +117,8 @@
     "worktrunk-bin": {
       "flake": false,
       "locked": {
-        "lastModified": 1785443852,
-        "narHash": "sha256-94kg+F8zoZbJRkzJoLlTNzku1BODpGLrTQxW3Qt1ukc=",
+        "lastModified": 1786558692,
+        "narHash": "sha256-zKRoHq5vRxT0CjV2tvyJk3HobHSrYyicDu8L8GhhmVc=",
         "type": "tarball",
         "url": "https://github.com/max-sixty/worktrunk/releases/latest/download/worktrunk-x86_64-unknown-linux-musl.tar.xz"
       },
