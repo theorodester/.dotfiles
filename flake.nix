@@ -27,6 +27,11 @@
       url = "https://github.com/openai/codex/releases/latest/download/codex-x86_64-unknown-linux-musl.tar.gz";
       flake = false;
     };
+    chatgpt-bin = {
+      # OpenAI redirects this URL to the latest official Linux preview package.
+      url = "https://persistent.oaistatic.com/codex-app-prod/linux/deb/latest/chatgpt_amd64.deb";
+      flake = false;
+    };
     t3code-bin = {
       # GitHub redirects this URL to the latest Linux updater manifest.
       url = "https://github.com/pingdotgg/t3code/releases/latest/download/latest-linux.yml";
@@ -95,6 +100,9 @@
               mainProgram = "codex";
               platforms = [ "x86_64-linux" ];
             };
+          };
+          chatgpt = final.callPackage ./applications/chatgpt/package.nix {
+            src = inputs.chatgpt-bin;
           };
           t3code =
             let

@@ -101,6 +101,7 @@
     gnupg
     gemini-cli
     codex
+    chatgpt
     t3code
     worktrunk
     zed-editor-fhs
