@@ -167,6 +167,7 @@
 
         "match:class ^(obsidian)$, opacity 0.7 0.5"
         "match:class ^(dev.zed.Zed)$, opacity 0.85 0.65"
+        "match:class ^(t3code)$, opacity 0.85 0.65"
         "match:class ^(obsidian)$, tile on" # force obsidian to tile
 
         "match:class ^(discord)$, opacity 0.7 0.7"

@@ -237,6 +237,16 @@ in
     }
 
     window-rule {
+        match app-id="t3code$"
+        opacity 0.65
+    }
+
+    window-rule {
+        match app-id="t3code$" is-focused=true
+        opacity 0.85
+    }
+
+    window-rule {
         match app-id="discord$"
         opacity 0.7
     }
