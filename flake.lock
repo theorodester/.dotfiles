@@ -16,17 +16,29 @@
         "type": "github"
       }
     },
+    "chatgpt-bin": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-gtH9OTmke6dAtJFasrWUB+ppyV1UutiEBaXNFmrx7zg=",
+        "type": "file",
+        "url": "https://persistent.oaistatic.com/codex-app-prod/linux/deb/latest/chatgpt_amd64.deb"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://persistent.oaistatic.com/codex-app-prod/linux/deb/latest/chatgpt_amd64.deb"
+      }
+    },
     "codex-bin": {
       "flake": false,
       "locked": {
-        "lastModified": 1785287336,
-        "narHash": "sha256-Dkw0JuQV49nfonQX44c+9vH8KacyNEapWj9GaVcw/nQ=",
+        "lastModified": 1786064549,
+        "narHash": "sha256-EfjpvJK6rHX8ylZ5ED8O+isdogj8WONQuPSjRkuPgZU=",
         "type": "tarball",
-        "url": "https://github.com/openai/codex/releases/latest/download/codex-x86_64-unknown-linux-musl.tar.gz"
+        "url": "https://github.com/openai/codex/releases/latest/download/codex-package-x86_64-unknown-linux-musl.tar.gz"
       },
       "original": {
         "type": "tarball",
-        "url": "https://github.com/openai/codex/releases/latest/download/codex-x86_64-unknown-linux-musl.tar.gz"
+        "url": "https://github.com/openai/codex/releases/latest/download/codex-package-x86_64-unknown-linux-musl.tar.gz"
       }
     },
     "home-manager": {
@@ -81,6 +93,7 @@
     "root": {
       "inputs": {
         "anthropic-skills": "anthropic-skills",
+        "chatgpt-bin": "chatgpt-bin",
         "codex-bin": "codex-bin",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
@@ -92,7 +105,7 @@
     "t3code-bin": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-3slS4PJKCqRETBN0nmUZ9mCYIIm4eZcdCyoTEUmR+Aw=",
+        "narHash": "sha256-30s4fnIRukBd9eofLB7LxSxLGHeA3MeqZNaU9Q0qnjI=",
         "type": "file",
         "url": "https://github.com/pingdotgg/t3code/releases/latest/download/latest-linux.yml"
       },
@@ -104,8 +117,8 @@
     "worktrunk-bin": {
       "flake": false,
       "locked": {
-        "lastModified": 1785443852,
-        "narHash": "sha256-94kg+F8zoZbJRkzJoLlTNzku1BODpGLrTQxW3Qt1ukc=",
+        "lastModified": 1786558692,
+        "narHash": "sha256-zKRoHq5vRxT0CjV2tvyJk3HobHSrYyicDu8L8GhhmVc=",
         "type": "tarball",
         "url": "https://github.com/max-sixty/worktrunk/releases/latest/download/worktrunk-x86_64-unknown-linux-musl.tar.xz"
       },

@@ -24,7 +24,12 @@
 
     codex-bin = {
       # GitHub redirects this URL to the latest tagged release asset.
-      url = "https://github.com/openai/codex/releases/latest/download/codex-x86_64-unknown-linux-musl.tar.gz";
+      url = "https://github.com/openai/codex/releases/latest/download/codex-package-x86_64-unknown-linux-musl.tar.gz";
+      flake = false;
+    };
+    chatgpt-bin = {
+      # OpenAI redirects this URL to the latest official Linux preview package.
+      url = "https://persistent.oaistatic.com/codex-app-prod/linux/deb/latest/chatgpt_amd64.deb";
       flake = false;
     };
     t3code-bin = {
@@ -64,7 +69,9 @@
       t3codeManifestField =
         prefix:
         let
-          line = lib.findFirst (lib.hasPrefix prefix) (throw "Missing ${prefix} in t3code manifest") t3codeManifestLines;
+          line =
+            lib.findFirst (lib.hasPrefix prefix) (throw "Missing ${prefix} in t3code manifest")
+              t3codeManifestLines;
         in
         lib.removePrefix prefix line;
       t3codeVersion = t3codeManifestField "version: ";
@@ -84,7 +91,15 @@
 
             installPhase = ''
               runHook preInstall
-              install -Dm755 "$src/codex-x86_64-unknown-linux-musl" "$out/bin/codex"
+
+              mkdir -p "$out/bin"
+              mkdir -p "$out/lib/codex"
+
+              cp -r ./* "$out/lib/codex/"
+
+              ln -s "$out/lib/codex/bin/codex" "$out/bin/codex"
+              ln -s "$out/lib/codex/bin/codex-code-mode-host" "$out/bin/codex-code-mode-host"
+
               runHook postInstall
             '';
 
@@ -96,46 +111,38 @@
               platforms = [ "x86_64-linux" ];
             };
           };
+          chatgpt = final.callPackage ./applications/chatgpt/package.nix {
+            src = inputs.chatgpt-bin;
+          };
           t3code =
             let
               src = final.fetchurl {
                 url = "https://github.com/pingdotgg/t3code/releases/download/v${t3codeVersion}/${t3codePath}";
                 hash = "sha512-${t3codeSha512}";
               };
+              appimageContents = final.appimageTools.extractType2 {
+                pname = "t3code";
+                version = t3codeVersion;
+                inherit src;
+              };
             in
-            final.stdenvNoCC.mkDerivation {
+            final.appimageTools.wrapType2 {
               pname = "t3code";
               version = t3codeVersion;
               inherit src;
-              dontUnpack = true;
-              nativeBuildInputs = [ final.p7zip ];
+              nativeBuildInputs = [ final.makeWrapper ];
 
-              installPhase = ''
-                runHook preInstall
-                install -d "$out/bin" "$out/share/applications" "$out/share/icons/hicolor/1024x1024/apps"
-                cat > "$out/bin/t3code" <<EOF
-                #!${final.runtimeShell}
-                exec ${final.appimage-run}/bin/appimage-run ${src} "\$@"
-                EOF
-                chmod +x "$out/bin/t3code"
+              extraInstallCommands = ''
+                mv $out/bin/t3code $out/bin/.t3code-wrapped
+                makeWrapper $out/bin/.t3code-wrapped $out/bin/t3code \
+                  --set APPIMAGE $out/bin/t3code
 
-                7z x -so "$src" usr/share/icons/hicolor/1024x1024/apps/t3-code-desktop.png \
-                  > "$out/share/icons/hicolor/1024x1024/apps/t3-code-desktop.png"
-
-                cat > "$out/share/applications/t3code.desktop" <<EOF
-                [Desktop Entry]
-                Name=t3code
-                GenericName=AI Coding Assistant
-                Comment=Desktop AI coding assistant from pingdotgg
-                Exec=$out/bin/t3code %U
-                Terminal=false
-                Type=Application
-                Icon=t3-code-desktop
-                StartupWMClass=T3 Code (Alpha)
-                StartupNotify=true
-                Categories=Development;Utility;
-                EOF
-                runHook postInstall
+                install -m 444 -D ${appimageContents}/t3code.desktop \
+                  $out/share/applications/t3code.desktop
+                install -m 444 -D ${appimageContents}/usr/share/icons/hicolor/512x512/apps/t3code.png \
+                  $out/share/icons/hicolor/512x512/apps/t3code.png
+                substituteInPlace $out/share/applications/t3code.desktop \
+                  --replace-fail 'Exec=AppRun --no-sandbox %U' 'Exec=t3code %U'
               '';
 
               meta = {
@@ -166,7 +173,10 @@
             meta = {
               description = "CLI for Git worktree management";
               homepage = "https://worktrunk.dev";
-              license = with final.lib.licenses; [ mit asl20 ];
+              license = with final.lib.licenses; [
+                mit
+                asl20
+              ];
               mainProgram = "wt";
               platforms = [ "x86_64-linux" ];
             };
