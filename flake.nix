@@ -24,7 +24,7 @@
 
     codex-bin = {
       # GitHub redirects this URL to the latest tagged release asset.
-      url = "https://github.com/openai/codex/releases/latest/download/codex-x86_64-unknown-linux-musl.tar.gz";
+      url = "https://github.com/openai/codex/releases/latest/download/codex-package-x86_64-unknown-linux-musl.tar.gz";
       flake = false;
     };
     chatgpt-bin = {
@@ -69,7 +69,9 @@
       t3codeManifestField =
         prefix:
         let
-          line = lib.findFirst (lib.hasPrefix prefix) (throw "Missing ${prefix} in t3code manifest") t3codeManifestLines;
+          line =
+            lib.findFirst (lib.hasPrefix prefix) (throw "Missing ${prefix} in t3code manifest")
+              t3codeManifestLines;
         in
         lib.removePrefix prefix line;
       t3codeVersion = t3codeManifestField "version: ";
@@ -89,7 +91,15 @@
 
             installPhase = ''
               runHook preInstall
-              install -Dm755 "$src/codex-x86_64-unknown-linux-musl" "$out/bin/codex"
+
+              mkdir -p "$out/bin"
+              mkdir -p "$out/lib/codex"
+
+              cp -r ./* "$out/lib/codex/"
+
+              ln -s "$out/lib/codex/bin/codex" "$out/bin/codex"
+              ln -s "$out/lib/codex/bin/codex-code-mode-host" "$out/bin/codex-code-mode-host"
+
               runHook postInstall
             '';
 
@@ -163,7 +173,10 @@
             meta = {
               description = "CLI for Git worktree management";
               homepage = "https://worktrunk.dev";
-              license = with final.lib.licenses; [ mit asl20 ];
+              license = with final.lib.licenses; [
+                mit
+                asl20
+              ];
               mainProgram = "wt";
               platforms = [ "x86_64-linux" ];
             };
