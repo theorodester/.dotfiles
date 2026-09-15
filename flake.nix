@@ -18,6 +18,12 @@
       flake = false;
     };
 
+    # Temporary package-source pin until the DaVinci Resolve hash fix lands in nixpkgs.
+    nixpkgs-davinci = {
+      url = "github:NixOS/nixpkgs/pull/562336/head";
+      flake = false;
+    };
+
     nixpkgs-zed = {
       url = "nixpkgs/nixos-unstable";
     };
@@ -120,7 +126,7 @@
                 url = "https://github.com/pingdotgg/t3code/releases/download/v${t3codeVersion}/${t3codePath}";
                 hash = "sha512-${t3codeSha512}";
               };
-              appimageContents = final.appimageTools.extractType2 {
+              appimageContents = final.appimageTools.extract {
                 pname = "t3code";
                 version = t3codeVersion;
                 inherit src;
@@ -181,6 +187,7 @@
               platforms = [ "x86_64-linux" ];
             };
           };
+          davinci-resolve = final.callPackage (inputs.nixpkgs-davinci + "/pkgs/by-name/da/davinci-resolve/package.nix") { };
           blender = zedPkgs.blender;
         })
       ];

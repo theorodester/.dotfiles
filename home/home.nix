@@ -99,7 +99,6 @@
     inkscape
     yt-dlp
     gnupg
-    gemini-cli
     codex
     chatgpt
     t3code
