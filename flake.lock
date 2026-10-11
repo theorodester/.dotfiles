@@ -31,8 +31,8 @@
     "codex-bin": {
       "flake": false,
       "locked": {
-        "lastModified": 1788991046,
-        "narHash": "sha256-OL3wNqPZn/TcvKsEDcuIVczm4VsUxBccVajKjAb2/pk=",
+        "lastModified": 1791568736,
+        "narHash": "sha256-/oJx1K4O5dScMF4meLAqM2wsuOZEIHRX72MdsbTqNoI=",
         "type": "tarball",
         "url": "https://github.com/openai/codex/releases/latest/download/codex-package-x86_64-unknown-linux-musl.tar.gz"
       },
@@ -123,7 +123,7 @@
     "t3code-bin": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-olYSJ7l67TTs9nMhjDnycq3fpLQ8WY1sgBOfk1Zwvn8=",
+        "narHash": "sha256-qrOaaINqwa8ZyphvVWWv7peIDwN8LZLFFycM8At2ZDY=",
         "type": "file",
         "url": "https://github.com/pingdotgg/t3code/releases/latest/download/latest-linux.yml"
       },
