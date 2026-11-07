@@ -148,7 +148,7 @@
                 install -m 444 -D ${appimageContents}/usr/share/icons/hicolor/512x512/apps/t3code.png \
                   $out/share/icons/hicolor/512x512/apps/t3code.png
                 substituteInPlace $out/share/applications/t3code.desktop \
-                  --replace-fail 'Exec=AppRun --no-sandbox %U' 'Exec=t3code %U'
+                  --replace-fail 'Exec=AppRun %U' 'Exec=t3code %U'
               '';
 
               meta = {
